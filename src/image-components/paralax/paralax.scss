@@ -1,0 +1,33 @@
+.paralex {
+  height: 100vh;
+  overflow-x: hidden;
+  perspective: 3px;
+}
+
+.paralex-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.layer3 {
+  transform: translateZ(0px) scale(1);
+}
+
+.layer2 {
+  transform: translateZ(1px) scale(0.675);
+}
+
+.layer1 {
+  transform: translateZ(2px) scale(0.347);
+}
+
+.strand {
+  top: 4000px;
+}
+
+.mountains {
+  top: 4110px;
+}

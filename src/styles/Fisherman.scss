@@ -1,0 +1,13 @@
+.fisherman {
+  height: 100vh;
+  .msg-container {
+    position: absolute;
+    width: 100%;
+    .msg-wrapper {
+      margin: 4rem;
+      display: flex;
+      flex-direction: column;
+      height: 130vw;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Eczar:wght@400;500&display=swap");
+
+.text-msg {
+  font-family: "Eczar", Courier, monospace;
+  font-weight: 400;
+  width: 60%;
+  max-width: 368px;
+  border-color: #fdf6d7;
+  border-width: 1px;
+  border-style: solid;
+  padding: 14px;
+  margin: 20px;
+  background-color: #221c1c;
+  z-index: 100;
+  color: #fdf6d7;
+  border-radius: 2px;
+  letter-spacing: 1.8px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: 2s;
+}
+.text-msg.even {
+  align-self: flex-end;
+}
+.text-msg.odd {
+  align-self: flex-start;
+}
+
+.text-msg:focus-visible {
+  outline: #fdf6d7 auto 0px;
+}

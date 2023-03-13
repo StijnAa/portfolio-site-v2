@@ -1,7 +1,66 @@
 import BackgroundPlate from "@/image-components/backgroundPlate/backgroundPlate";
 import Head from "next/head";
+import { TextMsg, TextMsgInput } from "@/components/textMessage.component";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { randomUUID } from "crypto";
+
+const apiCall = async (data: string) => {
+  const res = await fetch("/api/test", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (res.status === 200) {
+    console.log("Response succeeded!");
+    return res.json();
+  } else {
+    return "error No Response";
+  }
+};
 
 export default function Home() {
+  const [msgs, setMsg] = useState([
+    <TextMsg
+      text="Dit is een text bericht waarvan ik niet weet of het er goed uit gaat zien..."
+      key="1"
+    />,
+    <TextMsgInput
+      onEnter={(string) => {
+        return makeApiCall(string);
+      }}
+      key={Math.floor(Math.random() * 10000000)}
+    />,
+  ]);
+
+  const addInput = () => {
+    const input = (
+      <TextMsgInput
+        onEnter={(string) => {
+          return makeApiCall(string);
+        }}
+        key={Math.floor(Math.random() * 10000000)}
+      />
+    );
+    setMsg((prev) => [...prev, input]);
+  };
+
+  const addRespons = (text: string) => {
+    const input = (
+      <TextMsg text={text} key={Math.floor(Math.random() * 10000000)} />
+    );
+    setMsg((prev) => [...prev, input]);
+  };
+
+  const makeApiCall = async (inputText: string) => {
+    const respons = await apiCall(inputText);
+    addRespons(respons.textOutput);
+    addInput();
+  };
+
   return (
     <>
       <Head>
@@ -10,7 +69,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="">
+      <main className="fisherman">
+        <div className="msg-container">
+          <div className="msg-wrapper">
+            {msgs.map((msg, i) => {
+              return msg;
+            })}
+          </div>
+        </div>
         <BackgroundPlate />
       </main>
     </>
